@@ -1,0 +1,4 @@
+image:
+  repository: dockerr
+  tag: latest
+  pullPolicy: IfNotPresent
