@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  MYAPP
-  namespace: default
+  name:  my-app
+  namespace: helm
   labels:
-    app:  MYAPP
+    app:  my-app
 spec:
   selector:
     matchLabels:
-      app: MYAPP
+      app: my-app
   replicas: 1
   strategy:
     rollingUpdate:
@@ -18,15 +18,15 @@ spec:
   template:
     metadata:
       labels:
-        app:  MYAPP
+        app:  my-app
     spec:
       # initContainers:
         # Init containers are exactly like regular containers, except:
           # - Init containers always run to completion.
           # - Each init container must complete successfully before the next one starts.
       containers:
-      - name:  MYAPP
-        image: azacrshared.azurecr.io/walmarttpositoty:20220612.07
+      - name:  my-app
+        image: helmcontainer.azurecr.io/dockerr:latest
         resources:
           requests:
             cpu: 100m
