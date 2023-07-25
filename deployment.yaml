@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-deployment
+  name: tree
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: my-app
+      app: myapp
   template:
     metadata:
       labels:
-        app: my-app
+        app: myapp
     spec:
       containers:
-        - name: my-app-container
-          image: your-registry-name.azurecr.io/your-image-name:tag
+        - name: root
+          image: helmcontainer.azurecr.io/dockerr:latest
           ports:
             - containerPort: 80
           # Add the following sections for LivenessProbe and ReadinessProbe
@@ -33,7 +33,7 @@ spec:
           # Add the following section to read the ConfigMap
           envFrom:
             - configMapRef:
-                name: my-app-config-map
+                name: myapp configmap
           # Add the rolling update strategy
           strategy:
             type: RollingUpdate
